@@ -1,4 +1,5 @@
 const http=require('http')
+const { emit } = require('process')
 const server=http.createServer((req,res)=>{
     if(req.url === '/') // if home page 
     {   
@@ -14,4 +15,5 @@ const server=http.createServer((req,res)=>{
         <a href='/'> back home</a>`)
    
 })
+server.on('request',(req,res)=>{res.end(welcome)})
 server.listen(5000)

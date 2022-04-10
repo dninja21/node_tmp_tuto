@@ -1,0 +1,62 @@
+const { readFile, writeFile }=require ('fs')
+const util=require('util')
+const readfilepromise=util.promisify(readFile)
+const writefilepromise=util.promisify(writeFile)
+
+const start = async()=>{
+    try
+    {
+      const first= await readfilepromise('./Content/first.txt','utf8')
+      const second=await writefilepromise('./Content/second.txt','utf8')
+      await writefilepromise('./Content/result-sync.txt',`This is it the ${first} and ${second}`,{flag:'a'})
+    }
+    
+    catch(error)
+    {
+        console.log(error)
+    
+    }
+}
+start()
+
+
+
+
+ /**const getText=(path) =>{ 
+    return new Promise((resolve,reject) => {
+      readFile(path,"utf-8",(err,data)=>{
+
+            if(err)
+            {
+                reject (err)
+            }
+            else
+            {
+                resolve(data)
+
+            }
+        
+        })
+
+    })
+  
+}
+
+getText('./Content/first.txt')
+    .then(result)=>console.log(result)
+    .catch(err)=>console.log(err)
+
+    const start =async()=> {
+
+        try{
+            const first=await getText('./Content/first.txt')
+            const second=await getText('./Content/second.txt')
+            console.log(first,second)
+        }
+        catch{
+            console.log(err)
+            
+        }
+    
+    }
+*/
